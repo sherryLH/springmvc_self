@@ -17,12 +17,12 @@ public class SpringMvcOvOController {
     @RequestMapping("/listAllBook.do")
     public String listAllBook(){
         System.out.println("method ---- listAllBook");
-        return "listBook";
+        return "listAllBook";
     }
 
     @RequestMapping("/listBookName.do")
     public String listBookName(int id){
-        System.out.println("method ---- listBookName");
+        System.out.println("method ---- listBookName param id :" + id);
         return "listBookName";
     }
 }
