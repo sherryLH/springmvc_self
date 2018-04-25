@@ -66,6 +66,7 @@ public class SpringMvcOneVMoreController {
     }
 
     public String processSubmit(@ModelAttribute Owner owner, BindingResult result, SessionStatus status){
-        new Owner().
+        //new Owner().
+        return "submit";
     }
 }
