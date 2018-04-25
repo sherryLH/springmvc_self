@@ -66,7 +66,7 @@ public class SpringMvcOneVMoreController {
     }
 
     public String processSubmit(@ModelAttribute Owner owner, BindingResult result, SessionStatus status){
-        //new Owner().
+        status.setComplete();//将本Controller中所有存放在session级别的模型属性数据从session中清空
         return "submit";
     }
 }
