@@ -10,7 +10,11 @@
     <context:component-scan base-package="com.self"/>
 
     <!--启动spring mvc的注解功能，完成请求和注解POJO(简单java对象)的映射-->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+            <property name="webBindingInitializer">
+                <bean class="com.self.web.MyBindingInitializer"/>
+            </property>
+    </bean>
 
     <!--对模型视图名称的解析，即在模型视图名称添加前后缀-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
