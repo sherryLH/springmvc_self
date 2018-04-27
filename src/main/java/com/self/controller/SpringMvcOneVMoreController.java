@@ -78,8 +78,8 @@ public class SpringMvcOneVMoreController {
 
     //使用自定义注释
     @RequestMapping(params = "method=selfSys")
-    public String selfSys(@RequestParam("date")String date){
-        System.out.println("myBindingInitializer :"+date.toString());
+    public String selfSys(@RequestParam("book")Book book){
+        System.out.println("book=["+book.getBookId()+":"+book.getName()+"]");
         return "selfSys";
     }
 }

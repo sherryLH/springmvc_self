@@ -3,11 +3,12 @@ package com.self.model;
 
 import com.self.bean.Book;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.beans.PropertyEditorSupport;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class BookEditor extends PropertyEditorSupport {
-    public void setAsText(String text){
+    public void setAsText(String text) throws IllegalArgumentException {
         Book book = new Book();
         if(text != null){
             String[] items = text.split(":");
