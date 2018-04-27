@@ -4,14 +4,17 @@ package com.self.controller;
  */
 
 import com.self.bean.Book;
+import com.self.web.MyBindingInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.security.acl.Owner;
+import java.util.Date;
 import java.util.Iterator;
 
 @Controller
@@ -65,8 +68,18 @@ public class SpringMvcOneVMoreController {
         return "book";
     }
 
-    public String processSubmit(@ModelAttribute Owner owner, BindingResult result, SessionStatus status){
+    @RequestMapping(params="method=process")
+    public String processSubmit(@ModelAttribute("book0")Book book, BindingResult result, SessionStatus status, ModelMap modelMap){
+        System.out.println(modelMap.size()+";book0["+book.getName()+";"+book.getBookId()+"]");
         status.setComplete();//将本Controller中所有存放在session级别的模型属性数据从session中清空
+        System.out.println(modelMap.size()+";"+status.isComplete());
         return "submit";
+    }
+
+    //使用自定义注释
+    @RequestMapping(params = "method=selfSys")
+    public String selfSys(@RequestParam("date")String date){
+        System.out.println("myBindingInitializer :"+date.toString());
+        return "selfSys";
     }
 }
