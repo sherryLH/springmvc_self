@@ -6,7 +6,11 @@ package com.self.controller;
 import com.self.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 
 @Controller
 public class SpringMvcOvOController {
@@ -14,9 +18,9 @@ public class SpringMvcOvOController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping("/listAllBook.do")
-    public String listAllBook(){
-        System.out.println("method ---- listAllBook");
+    @RequestMapping(value = "/listAllBook/{date}")
+    public String listAllBook(@PathVariable Date date, String context){
+        System.out.println("method ---- listAllBook"+date+";"+context);
         return "listAllBook";
     }
 

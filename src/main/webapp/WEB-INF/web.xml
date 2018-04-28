@@ -33,6 +33,7 @@
     <servlet-mapping>
         <servlet-name>mvc</servlet-name>
         <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!-- 编码过滤，避免中文乱码-->
@@ -52,4 +53,9 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!--配置初始化项目的欢迎页面-->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
