@@ -16,13 +16,33 @@
     内容：<input type="text" name="context"/>
     <input type="submit"/>
 </form>
-<form action="/springmvc/listBookName.do">
-    编号：<input type="text" name="id"/>
+<form action="${pageContext.request.contextPath}/listBookName.do">
+    编号：<input type="text" name="id"/><%=request.getContextPath()%>
     <input type="submit"/>
 </form>
 <dev>One v More</dev>
-<form action="/springmvc/Book.do">
-    方法：<input type="text" name="method"/>
+<form action="${pageContext.request.contextPath}/Book.do">
+    方法：<input type="text" name="method" value="listAllBook"/>
+    <input type="submit"/>
+</form>
+<form action="${pageContext.request.contextPath}/Book.do">
+    方法：<input type="text" name="method" value="listBookName"/>
+    <input type="text" name="ID" />
+    <input type="text" name="bookId"/>
+    <input type="text" name="name"/>
+    <input type="submit"/>
+</form>
+<form action="${pageContext.request.contextPath}/Book.do" method="post">
+    方法：<input type="text" name="method" value="listBookId"/>
+    <input type="text" name="Id" />
+    <input type="text" name="bookId"/>
+    <input type="text" name="name"/>
+    <input type="submit"/>
+</form>
+<form action="${pageContext.request.contextPath}/Book.do">
+    使用自定义对象解析 &nbsp;
+    方法：<input type="text" name="method" value="selfSys"/>
+
     <input type="submit"/>
 </form>
 </body>

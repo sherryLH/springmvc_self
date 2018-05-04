@@ -11,11 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.security.acl.Owner;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Book.do")
@@ -23,17 +26,35 @@ import java.util.Iterator;
 public class SpringMvcOneVMoreController {
 
     @RequestMapping(params="method=listAllBook", method = RequestMethod.GET)
-    public String listAllBook(){
+//    public String listAllBook(){
+    public ModelAndView listAllBook(){
         System.out.println("OneVMore method -- listAllBook");
-        return "listAllBook";//被解析为逻辑视图的名称
+//        return "listAllBook";//被解析为逻辑视图的名称
+        Book book = new Book();
+        book.setBookId(1);
+        book.setName("验证ModelAndView传对象");
+        Book book2 = new Book();
+        book2.setBookId(2);
+        book2.setName("验证ModelAndView传对象2");
+        List<Book> books = new ArrayList<Book>();
+        books.add(book);
+        books.add(book2);
+        ModelAndView modelAndView = new ModelAndView("listAllBook");
+        modelAndView.addObject("message","参数message");
+        modelAndView.addObject(book);
+        modelAndView.addObject("books",books);
+        return modelAndView;
     }
 
     //http://localhost:8080/springmvc/Book.do?method=listBookName&id=3&bookId=4&name=名字
     //@RequestParam("ID") 对入参id进行注解，并将ID替换id绑定在请求参数上
     @RequestMapping(params="method=listBookName")
-    public String listBookName(@RequestParam("ID") int id, Book book){
+//    public String listBookName(@RequestParam("ID") int id, Book book){
+    public ModelAndView listBookName(@RequestParam("ID") int id, Book book){
         System.out.println("One V More method -- listBookName param id:"+id +";book:"+book.getBookId()+";"+book.getName());
-        return "listBookName";
+//        return "listBookName";
+        String message = "返回给页面 请求ID："+id;
+        return new ModelAndView("listBookName","message",message);
     }
 
     //org.springframework.ui.ModelMap 类，作为通用的模型数据承载对象
@@ -73,7 +94,7 @@ public class SpringMvcOneVMoreController {
         System.out.println(modelMap.size()+";book0["+book.getName()+";"+book.getBookId()+"]");
         status.setComplete();//将本Controller中所有存放在session级别的模型属性数据从session中清空
         System.out.println(modelMap.size()+";"+status.isComplete());
-        return "submit";
+        return "process";
     }
 
     //使用自定义注释
